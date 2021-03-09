@@ -1,0 +1,50 @@
+<project name="Hanabi" default="jar" basedir=".">
+
+
+	<property name="src.dir" value="src" />
+	<property name="classes.dir" value="classes" />
+
+
+	<!-- librairies Zen5's path -->
+	<path id="Hanabi.classpath">
+		<pathelement location="lib/zen5.jar" />
+	</path>
+
+	<!-- Compile project -->
+	<target name="compile" description="compile the source ">
+		<javac classpathref="Hanabi.classpath" includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}" />
+		<echo message="compilation completed." />
+	</target>
+
+	<!-- Create javadoc -->
+	<target name="javadoc" depends="compile" description="Create Javadoc documentation">
+		<javadoc classpathref="Hanabi.classpath" sourcepath="${src.dir}" destdir="docs/doc/javadoc">
+			<fileset dir="${src.dir}">
+				<include name="*/*.java" />
+			</fileset>
+		</javadoc>
+		<echo message=" Javadoc generated."/>
+	</target>
+
+	<!-- clean up -->
+	<target name="clean">
+		<delete dir="${classes.dir}" />
+		<mkdir dir="${classes.dir}" />
+		<echo message="Cleaning done." />
+	</target>
+
+	<!-- generating runnable jar -->
+
+	<target name="jar" depends="compile">
+		<fileset dir="classes" />
+		<zipfileset includes="**/*.classes" src="lib/zen5.jar" />
+		<jar destfile="Hanabi.jar" basedir="${classes.dir}" >
+			<manifest>
+				<attribute name="Main-Class" value="fr.umlv.hanabi.Hanabi" />
+				<attribute name="Class-Path" value="lib/zen5.jar" />
+			</manifest>
+		</jar>
+		<echo message="Executable jar generated." />
+	</target>
+
+</project>

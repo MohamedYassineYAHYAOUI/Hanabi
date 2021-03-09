@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.umlv.board"},{"l":"fr.umlv.card"},{"l":"fr.umlv.clue"},{"l":"fr.umlv.hanabi"},{"l":"fr.umlv.player"}]
